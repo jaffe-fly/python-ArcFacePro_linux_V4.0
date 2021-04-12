@@ -1,0 +1,16 @@
+
+license_path: "ArcSoft_ArcFacePro_linux_V4.0/082X1145X44VA69Z.dat"
+dll_path: "ArcSoft_ArcFacePro_linux_V4.0/lib/linux_x64/libarcsoft_face.so"
+engine_path: "ArcSoft_ArcFacePro_linux_V4.0/lib/linux_x64/libarcsoft_face_engine.so"
+#人脸比对阈值
+Facethread: 0.83
+
+
+
+
+
+
+
+
+
+
