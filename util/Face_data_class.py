@@ -97,7 +97,6 @@ class ASF_Face3DAngle(Structure):  # 人脸角度信息
         ('roll', POINTER(c_float)),
         ('yaw', POINTER(c_float)),
         ('pitch', POINTER(c_float)),
-        ('status', POINTER(c_int32)),
         ('num', c_int32)]
 
 

@@ -73,10 +73,10 @@ ASF_MASKDETECT = 0x00001000  # 口罩检测
 ASF_UPDATE_FACEDATA = 0x00002000  # 人脸信息
 
 # 初始化功能组合
-MASK = ASF_FACE_DETECT | ASF_AGE | ASF_GENDER | ASF_FACE3DANGLE | ASF_FACELANDMARK | ASF_LIVENESS | ASF_IMAGEQUALITY | ASF_IR_LIVENESS | ASF_FACESHELTER | ASF_MASKDETECT | ASF_UPDATE_FACEDATA
+MASK = ASF_FACE_DETECT | ASF_FACERECOGNITION | ASF_AGE | ASF_GENDER | ASF_FACE3DANGLE | ASF_FACELANDMARK | ASF_LIVENESS | ASF_IMAGEQUALITY | ASF_FACESHELTER | ASF_MASKDETECT | ASF_UPDATE_FACEDATA
 
 # 属性检测时的 combinedMask
-PROCESS_MASK = ASF_AGE | ASF_GENDER | ASF_FACE3DANGLE | ASF_LIVENESS | ASF_FACELANDMARK | ASF_MASKDETECT
+PROCESS_MASK = ASF_AGE | ASF_GENDER | ASF_FACE3DANGLE | ASF_LIVENESS | ASF_MASKDETECT | ASF_FACELANDMARK
 
 malloc = dllc.malloc
 malloc.restype = c_void_p
@@ -178,53 +178,53 @@ Process_str.argtypes = (c_void_p, POINTER(c_ubyte), POINTER(ASF_MultiFaceInfo), 
 # 3.5.18 获取年龄信息
 ASFGetAge = dll.ASFGetAge
 ASFGetAge.restype = c_int32
-ASFGetAge.argtypes = (c_void_p,POINTER(ASF_AgeInfo))
+ASFGetAge.argtypes = (c_void_p, POINTER(ASF_AgeInfo))
 
 # 3.5.19 性别信息
 ASFGetGender = dll.ASFGetGender
 ASFGetGender.restype = c_int32
-ASFGetGender.argtypes = (c_void_p,POINTER(ASF_GenderInfo))
+ASFGetGender.argtypes = (c_void_p, POINTER(ASF_GenderInfo))
 
 # 3.5.20 获取3D角度信息
 ASFGetFace3DAngle = dll.ASFGetFace3DAngle
 ASFGetFace3DAngle.restype = c_int32
-ASFGetFace3DAngle.argtypes = (c_void_p,POINTER(ASF_Face3DAngle))
+ASFGetFace3DAngle.argtypes = (c_void_p, POINTER(ASF_Face3DAngle))
 
 # 3.5.21 获取RGB活体信息
 ASFGetLivenessScore = dll.ASFGetLivenessScore
 ASFGetLivenessScore.restype = c_int32
-ASFGetLivenessScore.argtypes = (c_void_p,POINTER(ASF_LivenessInfo))
+ASFGetLivenessScore.argtypes = (c_void_p, POINTER(ASF_LivenessInfo))
 
 # 3.5.22 设置遮挡算法检测的阈值
 ASFSetFaceShelterParam = dll.ASFSetFaceShelterParam
 ASFSetFaceShelterParam.restype = c_int32
-ASFSetFaceShelterParam.argtypes = (c_void_p,c_float)
+ASFSetFaceShelterParam.argtypes = (c_void_p, c_float)
 
 # 3.5.23 获取人脸是否戴口罩。
 ASFGetMask = dll.ASFGetMask
 ASFGetMask.restype = c_int32
-ASFGetMask.argtypes = (c_void_p,POINTER(ASF_MaskInfo))
+ASFGetMask.argtypes = (c_void_p, POINTER(ASF_MaskInfo))
 
 # 3.5.24 获取额头区域位置。
 ASFGetFaceLandMark = dll.ASFGetFaceLandMark
 ASFGetFaceLandMark.restype = c_int32
-ASFGetFaceLandMark.argtypes = (c_void_p,POINTER(ASF_LandMarkInfo))
+ASFGetFaceLandMark.argtypes = (c_void_p, POINTER(ASF_LandMarkInfo))
 
 # 3.5.25 单人脸 IR 活体检测
 # combinedMask 目前仅支持 ASF_IR_LIVENESS
 ASFProcess_IR = dll.ASFProcess_IR
 ASFProcess_IR.retype = c_int32
-ASFProcess_IR.argtypes = (c_void_p,c_int32,c_int32,c_int32,POINTER(c_ubyte), POINTER(ASF_MultiFaceInfo), c_int32)
+ASFProcess_IR.argtypes = (c_void_p, c_int32, c_int32, c_int32, POINTER(c_ubyte), POINTER(ASF_MultiFaceInfo), c_int32)
 
 # 3.5.26 单人脸 IR 活体检测(图像结构)
 ASFProcess_IR_str = dll.ASFProcessEx_IR
 ASFProcess_IR_str.retype = c_int32
-ASFProcess_IR_str.argtypes = (c_void_p,POINTER(c_ubyte), POINTER(ASF_MultiFaceInfo), c_int32)
+ASFProcess_IR_str.argtypes = (c_void_p, POINTER(c_ubyte), POINTER(ASF_MultiFaceInfo), c_int32)
 
 # 3.5.27 获取IR活体信息
 Liveness_IR = dll.ASFGetLivenessScore_IR
 Liveness_IR.restype = c_int32  # 成功返回 MOK，失败详见 3.2 错误码列表
-Liveness_IR.argtypes = (c_void_p,POINTER(ASF_LivenessInfo))
+Liveness_IR.argtypes = (c_void_p, POINTER(ASF_LivenessInfo))
 
 # 3.5.28 获取SDK版本信息
 version = dll.ASFGetVersion
